@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>💘 San Valentín 💘</title>
+
   <style>
     * {
       margin: 0;
@@ -25,7 +26,7 @@
       padding: 35px;
       border-radius: 25px;
       text-align: center;
-      width: 350px;
+      width: 360px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       animation: aparecer 1.5s ease;
       position: relative;
@@ -45,15 +46,17 @@
 
     .buttons {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
+      gap: 25px;
       margin-top: 25px;
+      position: relative;
     }
 
     button {
-      padding: 12px 22px;
+      padding: 12px 26px;
       border: none;
-      border-radius: 20px;
-      font-size: 16px;
+      border-radius: 25px;
+      font-size: 17px;
       cursor: pointer;
       transition: 0.3s;
     }
@@ -71,7 +74,7 @@
     #no {
       background: #adb5bd;
       color: white;
-      position: absolute;
+      position: relative;
     }
 
     .heart {
@@ -79,6 +82,7 @@
       color: rgba(255, 0, 85, 0.6);
       font-size: 20px;
       animation: float 6s infinite ease-in;
+      pointer-events: none;
     }
 
     @keyframes float {
@@ -107,18 +111,22 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Música romántica -->
   <audio id="music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d52c3f3d.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
     <h1>💖 San Valentín 💖</h1>
+
     <p>
       Para mi querido novio <strong>Jhon</strong><br>
       de su hermosa novia <strong>Paula</strong> 💕
     </p>
+
     <p><strong>¿Quieres ser mi San Valentín?</strong> 💌</p>
 
     <div class="buttons">
@@ -137,20 +145,21 @@
       music.play();
     }, { once: true });
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 100);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
+    // Botón NO se escapa
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 120 - 60;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
+    // Al decir que SÍ 💘
     yesBtn.addEventListener("click", () => {
       document.body.innerHTML = `
         <div class="card">
           <h1>💘 ¡Sabía que dirías que sí! 💘</h1>
           <p>
-            Menos mallll 🐸 <br><br>
-            Te quiero, Jhon 🦜❤️
+            Menos mallll 🐸<br><br>
+            Te quiero muchísimo, Jhon 🦜❤️
           </p>
         </div>
       `;
