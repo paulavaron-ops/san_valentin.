@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>💘 San Valentín 💘</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 35px;
+      border-radius: 25px;
+      text-align: center;
+      width: 350px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: aparecer 1.5s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 25px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #yes {
+      background: #e63946;
+      color: white;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+      background: #ff4d6d;
+    }
+
+    #no {
+      background: #adb5bd;
+      color: white;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 0, 85, 0.6);
+      font-size: 20px;
+      animation: float 6s infinite ease-in;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d52c3f3d.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>💖 San Valentín 💖</h1>
+    <p>
+      Para mi querido novio <strong>Jhon</strong><br>
+      de su hermosa novia <strong>Paula</strong> 💕
+    </p>
+    <p><strong>¿Quieres ser mi San Valentín?</strong> 💌</p>
+
+    <div class="buttons">
+      <button id="yes">Sí 💖</button>
+      <button id="no">No 🙈</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const music = document.getElementById("music");
+
+    // Música al primer click
+    document.body.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div class="card">
+          <h1>💘 ¡Sabía que dirías que sí! 💘</h1>
+          <p>
+            Menos mallll 🐸 <br><br>
+            Te quiero, Jhon 🦜❤️
+          </p>
+        </div>
+      `;
+    });
+
+    // Corazones flotando
+    function crearCorazon() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(crearCorazon, 300);
+  </script>
+
+</body>
+</html>
